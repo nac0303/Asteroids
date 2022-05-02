@@ -1,0 +1,11 @@
+C:\Users\Aluno\Documents\GitHub\Asteroids\Asteroids\Asteroids\bin\Debug\Asteroids.exe.config
+C:\Users\Aluno\Documents\GitHub\Asteroids\Asteroids\Asteroids\bin\Debug\Asteroids.exe
+C:\Users\Aluno\Documents\GitHub\Asteroids\Asteroids\Asteroids\bin\Debug\Asteroids.pdb
+C:\Users\Aluno\Documents\GitHub\Asteroids\Asteroids\Asteroids\obj\Debug\Asteroids.csproj.AssemblyReference.cache
+C:\Users\Aluno\Documents\GitHub\Asteroids\Asteroids\Asteroids\obj\Debug\Asteroids.csproj.SuggestedBindingRedirects.cache
+C:\Users\Aluno\Documents\GitHub\Asteroids\Asteroids\Asteroids\obj\Debug\Asteroids.Form1.resources
+C:\Users\Aluno\Documents\GitHub\Asteroids\Asteroids\Asteroids\obj\Debug\Asteroids.Properties.Resources.resources
+C:\Users\Aluno\Documents\GitHub\Asteroids\Asteroids\Asteroids\obj\Debug\Asteroids.csproj.GenerateResource.cache
+C:\Users\Aluno\Documents\GitHub\Asteroids\Asteroids\Asteroids\obj\Debug\Asteroids.csproj.CoreCompileInputs.cache
+C:\Users\Aluno\Documents\GitHub\Asteroids\Asteroids\Asteroids\obj\Debug\Asteroids.exe
+C:\Users\Aluno\Documents\GitHub\Asteroids\Asteroids\Asteroids\obj\Debug\Asteroids.pdb

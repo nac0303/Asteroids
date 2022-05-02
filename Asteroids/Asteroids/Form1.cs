@@ -16,5 +16,23 @@ namespace Asteroids
         {
             InitializeComponent();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Maximized;
+            pictureBox1.Dock = DockStyle.Fill;
+            
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Paint(object sender, PaintEventArgs e)
+        {
+            
+            e.Graphics.DrawImage(, 60,10);
+        }
     }
 }
