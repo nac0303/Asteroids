@@ -73,9 +73,9 @@ namespace Asteroids.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Astro1 {
+        internal static System.Drawing.Bitmap Astro1_2 {
             get {
-                object obj = ResourceManager.GetObject("Astro1", resourceCulture);
+                object obj = ResourceManager.GetObject("Astro1_2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

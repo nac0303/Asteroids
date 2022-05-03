@@ -10,9 +10,10 @@ using System.Windows.Forms;
 
 namespace Asteroids
 {
-    public partial class Form1 : Form
+    public partial class AsteroidsMain : Form
     {
-        public Form1()
+        Spaceship spaceship = new Spaceship(10,20,10,00,100,100);
+        public AsteroidsMain()
         {
             InitializeComponent();
         }
@@ -20,19 +21,12 @@ namespace Asteroids
         private void Form1_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
-            pictureBox1.Dock = DockStyle.Fill;
-            
+            Jogo.Dock = DockStyle.Fill;
+            Jogo.Image = new Bitmap(Jogo.Width,Jogo.Height);
+            spaceship.Draw(Jogo);
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
 
-        }
 
-        private void pictureBox1_Paint(object sender, PaintEventArgs e)
-        {
-            
-            e.Graphics.DrawImage(, 60,10);
-        }
     }
 }
