@@ -39,10 +39,9 @@ namespace Asteroids
             posY += velY;
         }
 
-        public void Draw(PictureBox Jogo)
+        public void Draw(PictureBox Jogo, Graphics g)
         {
-            Bitmap bmp = Jogo.Image as Bitmap;
-            Graphics g = Graphics.FromImage(bmp);
+
             g.DrawImage(image[PosImageAtual], this.PosX, this.PosY, this.SizeX, this.SizeY);
         }
     }

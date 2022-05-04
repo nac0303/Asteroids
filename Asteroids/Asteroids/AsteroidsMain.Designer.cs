@@ -51,6 +51,8 @@
             this.Name = "AsteroidsMain";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ReadKey);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Stop);
             ((System.ComponentModel.ISupportInitialize)(this.Jogo)).EndInit();
             this.ResumeLayout(false);
 
