@@ -39,6 +39,7 @@
             this.Jogo.Size = new System.Drawing.Size(776, 426);
             this.Jogo.TabIndex = 0;
             this.Jogo.TabStop = false;
+            this.Jogo.Click += new System.EventHandler(this.Jogo_Click);
             // 
             // AsteroidsMain
             // 

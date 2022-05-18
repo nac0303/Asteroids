@@ -51,6 +51,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Shots.cs" />
     <Compile Include="Spaceship.cs" />
     <Compile Include="AsteroidsMain.cs">
       <SubType>Form</SubType>

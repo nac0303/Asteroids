@@ -21,6 +21,7 @@ namespace Asteroids
             InitializeComponent();
             this.WindowState = FormWindowState.Maximized;
             Jogo.Dock = DockStyle.Fill;
+            this.KeyPreview = true;
             Controls.Add(Jogo);
         }
 
@@ -41,6 +42,22 @@ namespace Asteroids
                 spaceship.Frictionate();
                 g.Clear(Color.Black);
                 spaceship.Draw(Jogo,g);
+                if(spaceship.PosY + spaceship.SizeX<=0 )
+                {
+                    spaceship.PosY = this.Height;
+                }
+                if (spaceship.PosY> this.Height)
+                {
+                    spaceship.PosY = -60;
+                }
+                if (spaceship.PosX + spaceship.SizeX <= 0)
+                {
+                    spaceship.PosX = this.Width;
+                }
+                if (spaceship.PosX > this.Width)
+                {
+                    spaceship.PosX = -60;
+                }
                 Jogo.Refresh();
             };
             tm.Start();
@@ -53,28 +70,22 @@ namespace Asteroids
             if (e.KeyCode == Keys.Escape)
             {
                 Application.Exit();
-                return;
             }
             if (e.KeyCode == Keys.Right)
             {
                 spaceship.Rotate(8);
-                return;
             }
             if (e.KeyCode == Keys.Left)
             {
                 spaceship.Rotate(-8);
-                return;
             }
             if (e.KeyCode == Keys.Down)
             {
                 spaceship.Down();
-                return;
             }
             if (e.KeyCode == Keys.Up)
             {
-
                 spaceship.Up();
-                return;
             }
         }
 
@@ -82,7 +93,13 @@ namespace Asteroids
         {
             if (e.KeyCode == Keys.Up)
                 spaceship.Stop();
+            if (e.KeyCode == Keys.Left || e.KeyCode == Keys.Right)
+                spaceship.StopAngle();
         }
 
+        private void Jogo_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -33,7 +33,7 @@ namespace Asteroids
         public Image[] Images { get => image; set => image = value; }
         public int PosImageAtual { get => posImageAtual; set => posImageAtual = value; }
 
-        public void Move()
+        public virtual void Move()
         {
             posX += velX;
             posY += velY;

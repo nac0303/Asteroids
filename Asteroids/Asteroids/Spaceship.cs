@@ -10,7 +10,9 @@ namespace Asteroids
 {
     public class Spaceship : Sprite
     {
+        
         public float RotationAngle { get; set; }
+        public float AngularAcceleration { get; set; }
         public float AccelerationX { get; set; }
         public float AccelerationY { get; set; }
 
@@ -30,8 +32,19 @@ namespace Asteroids
         public void Up()
         {
             inmove = true;
-            this.AccelerationX = (float)(1f * Math.Sin(Math.PI * this.RotationAngle / 180));
-            this.AccelerationY = (float)(-1f * Math.Cos(Math.PI * this.RotationAngle / 180));
+            this.AccelerationX = (float)(2f * Math.Sin(Math.PI * this.RotationAngle / 180));
+            this.AccelerationY = (float)(-2f * Math.Cos(Math.PI * this.RotationAngle / 180));
+        }
+
+        public override void Move()
+        {
+            base.Move();
+            RotationAngle += AngularAcceleration;
+            if (inmove)
+            {
+                this.AccelerationX = (float)(2f * Math.Sin(Math.PI * this.RotationAngle / 180));
+                this.AccelerationY = (float)(-2f  * Math.Cos(Math.PI * this.RotationAngle / 180));
+            }
         }
 
         public void Down()
@@ -44,6 +57,7 @@ namespace Asteroids
             VelX += AccelerationX;
             if (VelX > velmax)
                 VelX = velmax;
+
             else if (VelX < -velmax)
                 VelX = -velmax;
             VelY += AccelerationY;
@@ -54,32 +68,10 @@ namespace Asteroids
         }
         public void Frictionate()
         {
-            float friction = 0.5f;
-            if (VelX > 0)
-            {
-                VelX -= friction;
-                if (VelX < 0)
-                    VelX = 0;
-            }
-            else if (VelX < 0)
-            {
-                VelX += friction;
-                if (VelX > 0)
-                    VelX = 0;
-            }
+            float friction = 0.95f;
 
-            if (VelY > 0)
-            {
-                VelY -= friction;
-                if (VelY < 0)
-                    VelY = 0;
-            }
-            else if (VelY < 0)
-            {
-                VelY += friction;
-                if (VelY > 0)
-                    VelY = 0;
-            }
+            VelX *= friction;
+            VelY *= friction;
         }
 
         public void Stop()
@@ -88,15 +80,17 @@ namespace Asteroids
             this.AccelerationY = 0;
             inmove = false;
         }
+
+        public void StopAngle()
+        {
+            this.AngularAcceleration = 0;
+        }
+
         public void Rotate(float angle)
         {
-            RotationAngle += angle;
-            if (inmove)
-            {
-                this.AccelerationX = (float)(5 * Math.Sin(Math.PI * this.RotationAngle / 180));
-                this.AccelerationY = (float)(-5 * Math.Cos(Math.PI * this.RotationAngle / 180));
-            }
+            AngularAcceleration = angle;
         }
+
         public override void Draw(PictureBox Jogo, Graphics g)
         {
             float deslocx = this.PosX + this.SizeX / 2,
