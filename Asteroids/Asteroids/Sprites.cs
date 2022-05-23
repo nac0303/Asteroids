@@ -43,5 +43,10 @@ namespace Asteroids
         {
             g.DrawImage(image[PosImageAtual], this.PosX, this.PosY, this.SizeX, this.SizeY);
         }
+
+        public virtual void HitTheWall(int Height, int Width)
+        {
+
+        }
     }
 }

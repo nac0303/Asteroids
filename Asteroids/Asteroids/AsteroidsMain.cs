@@ -14,6 +14,7 @@ namespace Asteroids
     public partial class AsteroidsMain : Form
     {
         Spaceship spaceship = new Spaceship(200,200,00,00,60,60);
+        AsteroidSP asteroids = new AsteroidSP(750, 200, 5, 7, 60, 60);
         Timer tm = new Timer();
         Graphics g = null;
         public AsteroidsMain()
@@ -38,26 +39,19 @@ namespace Asteroids
             tm.Tick += delegate
             {
                 spaceship.Move();
+                asteroids.Move();
+
                 spaceship.Accelerate();
                 spaceship.Frictionate();
+
                 g.Clear(Color.Black);
+
                 spaceship.Draw(Jogo,g);
-                if(spaceship.PosY + spaceship.SizeX<=0 )
-                {
-                    spaceship.PosY = this.Height;
-                }
-                if (spaceship.PosY> this.Height)
-                {
-                    spaceship.PosY = -60;
-                }
-                if (spaceship.PosX + spaceship.SizeX <= 0)
-                {
-                    spaceship.PosX = this.Width;
-                }
-                if (spaceship.PosX > this.Width)
-                {
-                    spaceship.PosX = -60;
-                }
+                asteroids.Draw(Jogo, g);
+
+                spaceship.HitTheWall(this.Height, this.Width);
+                asteroids.HitTheWall(this.Height, this.Width);
+
                 Jogo.Refresh();
             };
             tm.Start();
@@ -86,6 +80,14 @@ namespace Asteroids
             if (e.KeyCode == Keys.Up)
             {
                 spaceship.Up();
+            }
+            if (e.KeyCode == Keys.Down)
+            {
+                spaceship.Down();
+            }
+            if(e.KeyCode == Keys.Space)
+            {
+                
             }
         }
 

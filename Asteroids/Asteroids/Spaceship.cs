@@ -49,6 +49,12 @@ namespace Asteroids
 
         public void Down()
         {
+            Random rnd = new Random();
+
+            PosX = (float)(rnd.Next(0, 1920));
+            PosY = (float)(rnd.Next(0, 1080));
+            VelX = 0;
+            VelY = 0;
         }
 
         public void Accelerate()
@@ -107,6 +113,28 @@ namespace Asteroids
             g.RotateTransform(-this.RotationAngle);
             g.TranslateTransform(-deslocx, -deslocy);
         }
+
+        public override void HitTheWall(int Height, int Width)
+        {
+            if ( this.PosY + this.SizeX <= 0)
+            {
+                this.PosY =Height;
+            }
+            if (this.PosY >Height)
+            {
+                this.PosY = -60;
+            }
+            if (this.PosX + this.SizeX <= 0)
+            {
+                this.PosX =Width;
+            }
+            if (this.PosX >Width)
+            {
+                this.PosX = -60;
+            }
+        }
+
     }
+
 
 }
