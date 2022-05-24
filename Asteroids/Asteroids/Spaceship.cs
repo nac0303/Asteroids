@@ -29,6 +29,7 @@ namespace Asteroids
         }
 
         private bool inmove = false;
+        private int teleportstep = 0;
         public void Up()
         {
             inmove = true;
@@ -38,23 +39,58 @@ namespace Asteroids
 
         public override void Move()
         {
-            base.Move();
-            RotationAngle += AngularAcceleration;
-            if (inmove)
+            if (teleportstep > 0)
             {
-                this.AccelerationX = (float)(2f * Math.Sin(Math.PI * this.RotationAngle / 180));
-                this.AccelerationY = (float)(-2f  * Math.Cos(Math.PI * this.RotationAngle / 180));
+                int duration = 10;
+                int size = 60 / duration / 2;
+
+                teleportstep++;
+                if (teleportstep < duration + 2)
+                {
+                    this.PosX += size;
+                    this.PosY += size;
+                    this.SizeX -= 2 * size;
+                    this.SizeY -= 2 * size;
+                }
+                else if (teleportstep == duration + 2)
+                {
+                    Random rnd = new Random();
+
+                    PosX = (float)(rnd.Next(0, 1920));
+                    PosY = (float)(rnd.Next(0, 1080));
+                    VelX = 0;
+                    VelY = 0;
+                    AccelerationX = 0;
+                    AccelerationY = 0;
+                }
+                else if (teleportstep < 2 * duration + 3)
+                {
+                    this.PosX -= size;
+                    this.PosY -= size;
+                    this.SizeX += 2 * size;
+                    this.SizeY += 2 * size;
+                }
+                else
+                {
+                    teleportstep = 0;
+                }
+            }
+            else
+            {
+                base.Move();
+                RotationAngle += AngularAcceleration;
+                if (inmove)
+                {
+                    this.AccelerationX = (float)(2f * Math.Sin(Math.PI * this.RotationAngle / 180));
+                    this.AccelerationY = (float)(-2f * Math.Cos(Math.PI * this.RotationAngle / 180));
+                }
             }
         }
 
         public void Down()
         {
-            Random rnd = new Random();
-
-            PosX = (float)(rnd.Next(0, 1920));
-            PosY = (float)(rnd.Next(0, 1080));
-            VelX = 0;
-            VelY = 0;
+            if (teleportstep == 0)
+                teleportstep = 1;
         }
 
         public void Accelerate()
@@ -118,17 +154,17 @@ namespace Asteroids
         {
             if ( this.PosY + this.SizeX <= 0)
             {
-                this.PosY =Height;
+                this.PosY = Height;
             }
-            if (this.PosY >Height)
+            if (this.PosY > Height)
             {
                 this.PosY = -60;
             }
             if (this.PosX + this.SizeX <= 0)
             {
-                this.PosX =Width;
+                this.PosX = Width;
             }
-            if (this.PosX >Width)
+            if (this.PosX > Width)
             {
                 this.PosX = -60;
             }

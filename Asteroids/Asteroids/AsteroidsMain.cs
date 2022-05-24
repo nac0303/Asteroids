@@ -87,7 +87,7 @@ namespace Asteroids
             }
             if(e.KeyCode == Keys.Space)
             {
-                
+                spaceship.Down();
             }
         }
 
