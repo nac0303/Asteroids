@@ -18,6 +18,7 @@ namespace Asteroids
             this.SizeX = sizeX;
             this.SizeY = sizeY;
             this.PosImageAtual = 1;
+            this.HitBox = HitBox.FromSprite(this);
         }
 
         public override void HitTheWall(int Height, int Width)
@@ -40,23 +41,10 @@ namespace Asteroids
             }
         }
 
+        public override void OnCollision(CollisionInfo info, Sprite sprite)
+        {
 
-        //public override void Draw(PictureBox Jogo, Graphics g)
-        //{
-        //    float deslocx = this.PosX + this.SizeX / 2,
-        //          deslocy = this.PosY + this.SizeY / 2;
-        //    g.TranslateTransform(deslocx, deslocy);
-        //    g.RotateTransform(this.RotationAngle);
-        //    g.TranslateTransform(-deslocx, -deslocy);
-
-        //    g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-
-        //    base.Draw(Jogo, g);
-
-        //    g.TranslateTransform(deslocx, deslocy);
-        //    g.RotateTransform(-this.RotationAngle);
-        //    g.TranslateTransform(-deslocx, -deslocy);
-        //}
+        }
     }
 
 }

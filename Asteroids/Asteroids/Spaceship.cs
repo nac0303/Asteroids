@@ -26,6 +26,7 @@ namespace Asteroids
             this.SizeX = sizeX;
             this.SizeY = sizeY;
             this.PosImageAtual = 0;
+            this.HitBox = HitBox.FromSprite(this);
         }
 
         private bool inmove = false;
@@ -170,7 +171,14 @@ namespace Asteroids
             }
         }
 
-    }
+        public override void OnCollision(CollisionInfo info, Sprite sprite)
+        {
+            if (info.Type == EntityType.Asteroid)
+            {
+                this.Down();
+            }
+        }
 
+    }
 
 }

@@ -18,11 +18,14 @@ namespace Asteroids
         private int sizeY;
         private Image[] image;
         int posImageAtual;
-
+        
         public Sprite()
         {
 
+        
         }
+
+        public HitBox HitBox { get; set; }
 
         public int SizeX { get => sizeX; set => sizeX = value; }
         public int SizeY { get => sizeY; set => sizeY = value; }
@@ -48,5 +51,29 @@ namespace Asteroids
         {
 
         }
+
+        public virtual void Colisao(PictureBox Jogo, Timer tm)
+        {
+
+        }
+
+        public virtual void CheckCollision(Sprite entity)
+        {
+            var info = HitBox.IsColliding(entity.HitBox);
+            if (info.IsColliding)
+            {
+                if (entity is AsteroidSP)
+                {
+                    info.Type = EntityType.Asteroid;
+                }
+                else if (entity is Shots)
+                {
+                    info.Type = EntityType.Shot;
+                }
+                OnCollision(info, entity);
+            }
+        }
+
+        public virtual void OnCollision(CollisionInfo info, Sprite sprite) { }
     }
 }

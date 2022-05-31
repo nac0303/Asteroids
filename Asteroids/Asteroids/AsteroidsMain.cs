@@ -49,6 +49,11 @@ namespace Asteroids
                 spaceship.Draw(Jogo,g);
                 asteroids.Draw(Jogo, g);
 
+                asteroids.HitBox.Draw(g);
+                spaceship.HitBox.Draw(g);
+
+                spaceship.CheckCollision(asteroids);
+
                 spaceship.HitTheWall(this.Height, this.Width);
                 asteroids.HitTheWall(this.Height, this.Width);
 
