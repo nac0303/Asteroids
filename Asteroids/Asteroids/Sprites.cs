@@ -59,6 +59,10 @@ namespace Asteroids
 
         public virtual void CheckCollision(Sprite entity)
         {
+            float dx = entity.posX - this.posX;
+            float dy = entity.posY - this.posY;
+            if (dx * dx + dy * dy > 100*100)
+                return;
             var info = HitBox.IsColliding(entity.HitBox);
             if (info.IsColliding)
             {

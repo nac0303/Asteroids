@@ -13,10 +13,11 @@ namespace Asteroids
 {
     public partial class AsteroidsMain : Form
     {
-        Spaceship spaceship = new Spaceship(200,200,00,00,60,60);
-        AsteroidSP asteroids = new AsteroidSP(750, 200, 5, 7, 60, 60);
+        Spaceship spaceship;
+
         Timer tm = new Timer();
         Graphics g = null;
+
         public AsteroidsMain()
         {
             InitializeComponent();
@@ -26,6 +27,7 @@ namespace Asteroids
             Controls.Add(Jogo);
         }
 
+        
         private void Form1_Load(object sender, EventArgs e)
         {
             Jogo.Image = new Bitmap(Jogo.Width, Jogo.Height);
@@ -33,31 +35,13 @@ namespace Asteroids
             Bitmap bmp = Jogo.Image as Bitmap;
             g = Graphics.FromImage(bmp);
 
-            spaceship.Draw(Jogo,g);
+            spaceship = new Spaceship(this.Width-(this.Width/2), this.Height - (this.Height / 2), 00, 00, 60, 60);
 
+            GameManager.Current.CreateAsteroids();
             tm.Interval = 20;
             tm.Tick += delegate
             {
-                spaceship.Move();
-                asteroids.Move();
-
-                spaceship.Accelerate();
-                spaceship.Frictionate();
-
-                g.Clear(Color.Black);
-
-                spaceship.Draw(Jogo,g);
-                asteroids.Draw(Jogo, g);
-
-                asteroids.HitBox.Draw(g);
-                spaceship.HitBox.Draw(g);
-
-                spaceship.CheckCollision(asteroids);
-
-                spaceship.HitTheWall(this.Height, this.Width);
-                asteroids.HitTheWall(this.Height, this.Width);
-
-                Jogo.Refresh();
+                GameManager.Current.Frames(Jogo, g, this.Width, this.Height, spaceship);
             };
             tm.Start();
 
@@ -92,7 +76,7 @@ namespace Asteroids
             }
             if(e.KeyCode == Keys.Space)
             {
-                spaceship.Down();
+                GameManager.Current.Shooting(spaceship);
             }
         }
 
@@ -100,6 +84,7 @@ namespace Asteroids
         {
             if (e.KeyCode == Keys.Up)
                 spaceship.Stop();
+
             if (e.KeyCode == Keys.Left || e.KeyCode == Keys.Right)
                 spaceship.StopAngle();
         }

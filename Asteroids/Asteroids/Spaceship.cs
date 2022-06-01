@@ -34,8 +34,8 @@ namespace Asteroids
         public void Up()
         {
             inmove = true;
-            this.AccelerationX = (float)(2f * Math.Sin(Math.PI * this.RotationAngle / 180));
-            this.AccelerationY = (float)(-2f * Math.Cos(Math.PI * this.RotationAngle / 180));
+            this.AccelerationX = (float)(1.5f * Math.Sin(Math.PI * this.RotationAngle / 180));
+            this.AccelerationY = (float)(-1.5f * Math.Cos(Math.PI * this.RotationAngle / 180));
         }
 
         public override void Move()
@@ -82,8 +82,8 @@ namespace Asteroids
                 RotationAngle += AngularAcceleration;
                 if (inmove)
                 {
-                    this.AccelerationX = (float)(2f * Math.Sin(Math.PI * this.RotationAngle / 180));
-                    this.AccelerationY = (float)(-2f * Math.Cos(Math.PI * this.RotationAngle / 180));
+                    this.AccelerationX = (float)(2 * Math.Sin(Math.PI * this.RotationAngle / 180));
+                    this.AccelerationY = (float)(-2 * Math.Cos(Math.PI * this.RotationAngle / 180));
                 }
             }
         }
@@ -96,7 +96,7 @@ namespace Asteroids
 
         public void Accelerate()
         {
-            int velmax = 30;
+            int velmax = 26;
             VelX += AccelerationX;
             if (VelX > velmax)
                 VelX = velmax;
