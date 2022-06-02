@@ -45,6 +45,7 @@ namespace Asteroids
             };
             tm.Start();
 
+
         }
 
         private void ReadKey(object sender, KeyEventArgs e)

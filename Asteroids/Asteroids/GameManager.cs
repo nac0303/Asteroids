@@ -16,7 +16,6 @@ namespace Asteroids
         private GameManager()
         {
             
-
         }
 
         public static void Reestart()
