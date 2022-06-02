@@ -70,7 +70,7 @@ namespace Asteroids
         {
             Random rnd = new Random();
             
-            for(int i = 0; i < 10; i++)
+            for(int i = 0; i <5 ; i++)
             {
                 int posx = rnd.Next(2000);
                 int posy = rnd.Next(2000);
