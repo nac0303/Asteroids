@@ -44,12 +44,25 @@ namespace Asteroids
             {
                 sprite.Draw(Jogo, g);
             }
-
-            spaceship.HitBox.Draw(g);
-
-            foreach (Sprite sprite in Sprites)
+            
+            for(int i = 0; i < Sprites.Count; i++)
             {
-                spaceship.CheckCollision(sprite);
+                if (Sprites[i] is AsteroidSP asteroid && asteroid.IsExploding)
+                {
+                    Sprites.Remove(asteroid);
+
+                    i--;
+                }
+            }
+
+            for(int i = 0; i<Sprites.Count;i++)
+            {
+                spaceship.CheckCollision(Sprites[i]);
+                for(int j = 0; j < Sprites.Count; j++)
+                {
+                    Sprites[i].CheckCollision(Sprites[j]);
+                }
+
             }
             
 
@@ -65,17 +78,17 @@ namespace Asteroids
 
         public List<Sprite> Sprites { get; private set; } = new List<Sprite>();
 
-        public void CreateAsteroids()
+        public void CreateAsteroids(int count = 4, int size = 80, int minx = 0, int miny = 0, int maxx = 2000, int maxy = 2000)
         {
             Random rnd = new Random();
             
-            for(int i = 0; i <5 ; i++)
+            for(int i = 0; i < count; i++)
             {
-                int posx = rnd.Next(2000);
-                int posy = rnd.Next(2000);
+                int posx = rnd.Next(minx, maxx);
+                int posy = rnd.Next(miny, maxy);
                 int velx = rnd.Next(10);
                 int vely = rnd.Next(10);
-                Sprites.Add(new AsteroidSP(posx, posy, velx, vely, 80, 80));
+                Sprites.Add(new AsteroidSP(posx, posy, velx, vely, size, size));
             }
         }
 
@@ -86,5 +99,7 @@ namespace Asteroids
             Shots shot = new Shots(spaceship.PosX +spaceship.SizeX/2, spaceship.PosY+spaceship.SizeY/2, VelX*15, VelY*15, 7, 7);
             Sprites.Add(shot);
         }
+
+   
     }
 }

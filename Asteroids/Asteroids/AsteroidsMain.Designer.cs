@@ -53,6 +53,7 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ReadKey);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ola);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Stop);
             ((System.ComponentModel.ISupportInitialize)(this.Jogo)).EndInit();
             this.ResumeLayout(false);

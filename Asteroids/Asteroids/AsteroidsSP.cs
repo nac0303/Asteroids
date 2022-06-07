@@ -7,6 +7,7 @@ namespace Asteroids
         
         public float AccelerationX { get; set; }
         public float AccelerationY { get; set; }
+        public bool IsExploding { get; set; } = false;
 
         public AsteroidSP(float posX, float posY,int velX, int velY, int sizeX,int sizeY)
         {
@@ -41,9 +42,34 @@ namespace Asteroids
             }
         }
 
+        public override void CheckCollision(Sprite entity)
+        {
+            float dx = entity.PosX - this.PosX;
+            float dy = entity.PosY - this.PosY;
+            if (dx * dx + dy * dy > 100 * 100)
+                return;
+            var info = HitBox.IsColliding(entity.HitBox);
+            if (info.IsColliding)
+            {
+                if (entity is Spaceship)
+                {
+                    info.Type = EntityType.Spaceship;
+                }
+                else if (entity is Shots)
+                {
+                    info.Type = EntityType.Shot;
+
+                }
+                OnCollision(info, entity);
+            }
+        }
+
         public override void OnCollision(CollisionInfo info, Sprite sprite)
         {
-
+             if (info.IsColliding && info.Type == EntityType.Shot)
+            {
+                this.IsExploding = true;
+            }
         }
     }
 

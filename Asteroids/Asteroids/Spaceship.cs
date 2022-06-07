@@ -179,6 +179,27 @@ namespace Asteroids
             }
         }
 
+        public override void CheckCollision(Sprite entity)
+        {
+            float dx = entity.PosX - this.PosX;
+            float dy = entity.PosY - this.PosY;
+            if (dx * dx + dy * dy > 100 * 100)
+                return;
+            var info = HitBox.IsColliding(entity.HitBox);
+            if (info.IsColliding)
+            {
+                if (entity is AsteroidSP)
+                {
+                    info.Type = EntityType.Asteroid;
+                }
+                else if (entity is Shots)
+                {
+                    info.Type = EntityType.Shot;
+
+                }
+                OnCollision(info, entity);
+            }
+        }
     }
 
 }

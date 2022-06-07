@@ -59,25 +59,11 @@ namespace Asteroids
 
         public virtual void CheckCollision(Sprite entity)
         {
-            float dx = entity.posX - this.posX;
-            float dy = entity.posY - this.posY;
-            if (dx * dx + dy * dy > 100*100)
-                return;
-            var info = HitBox.IsColliding(entity.HitBox);
-            if (info.IsColliding)
-            {
-                if (entity is AsteroidSP)
-                {
-                    info.Type = EntityType.Asteroid;
-                }
-                else if (entity is Shots)
-                {
-                    info.Type = EntityType.Shot;
-                }
-                OnCollision(info, entity);
-            }
-        }
 
-        public virtual void OnCollision(CollisionInfo info, Sprite sprite) { }
+        }
+       
+        public virtual void OnCollision(CollisionInfo info, Sprite sprite) {
+           
+        }
     }
 }

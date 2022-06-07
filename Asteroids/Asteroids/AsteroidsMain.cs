@@ -78,6 +78,7 @@ namespace Asteroids
             if(e.KeyCode == Keys.Space)
             {
                 GameManager.Current.Shooting(spaceship);
+
             }
         }
 
@@ -91,6 +92,11 @@ namespace Asteroids
         }
 
         private void Jogo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ola(object sender, KeyPressEventArgs e)
         {
 
         }
