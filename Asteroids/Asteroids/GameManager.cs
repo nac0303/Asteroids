@@ -44,6 +44,7 @@ namespace Asteroids
             {
                 sprite.Draw(Jogo, g);
             }
+            DrawLives(g,spaceship.Lifes,(int)(Height*0.03),(int)(Width*0.02));
 
             for (int i = 0; i < Sprites.Count; i++)
             {
@@ -128,5 +129,15 @@ namespace Asteroids
                 CreateAsteroids(2, 55, (int)asteroid.PosX - 20, (int)asteroid.PosY - 20, (int)asteroid.PosX + 20, (int)asteroid.PosY + 20, 3);
             }
         }
+
+        private void DrawLives(Graphics g,int lives,int height, int width)
+        {
+            for (int i = 0; i < lives; i++)
+            {
+                g.FillEllipse(Brushes.LightGreen,width, height, 15, 15);
+                width += 30;
+            }
+        }
+
     }
 }

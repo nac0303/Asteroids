@@ -41,6 +41,7 @@ namespace Asteroids
             tm.Interval = 20;
             tm.Tick += delegate
             {
+             
                 GameManager.Current.Frames(Jogo, g, this.Width, this.Height, spaceship);
             };
             tm.Start();
@@ -99,5 +100,7 @@ namespace Asteroids
         {
 
         }
+
+        
     }
 }

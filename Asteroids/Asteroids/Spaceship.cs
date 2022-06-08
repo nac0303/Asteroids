@@ -10,7 +10,7 @@ namespace Asteroids
 {
     public class Spaceship : Sprite
     {
-        
+        public int Lifes { get; set; } = 5;
         public float RotationAngle { get; set; }
         public float AngularAcceleration { get; set; }
         public float AccelerationX { get; set; }
@@ -175,7 +175,13 @@ namespace Asteroids
         {
             if (info.Type == EntityType.Asteroid)
             {
-                this.Down();
+                if (Lifes > 0)
+                {
+                    Down();
+                    Lifes--;
+                }
+                
+                    
             }
         }
 
