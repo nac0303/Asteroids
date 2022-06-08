@@ -78,7 +78,6 @@ namespace Asteroids
             if(e.KeyCode == Keys.Space)
             {
                 GameManager.Current.Shooting(spaceship);
-
             }
         }
 

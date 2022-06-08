@@ -9,7 +9,7 @@ namespace Asteroids
         public float AccelerationY { get; set; }
         public bool IsExploding { get; set; } = false;
 
-        public AsteroidSP(float posX, float posY,int velX, int velY, int sizeX,int sizeY)
+        public AsteroidSP(float posX, float posY,int velX, int velY, int sizeX,int sizeY,int posimage)
         {
             this.Images = new Image[] {Properties.Resources.Astro2, Properties.Resources.Astro3, Properties.Resources.Astro4, Properties.Resources.Astro5, Properties.Resources.Astro6, Properties.Resources.Astro7};
             this.PosX = posX;
@@ -18,7 +18,7 @@ namespace Asteroids
             this.VelY = velY;
             this.SizeX = sizeX;
             this.SizeY = sizeY;
-            this.PosImageAtual = 1;
+            this.PosImageAtual = posimage;
             this.HitBox = HitBox.FromSprite(this);
         }
 
@@ -58,7 +58,6 @@ namespace Asteroids
                 else if (entity is Shots)
                 {
                     info.Type = EntityType.Shot;
-
                 }
                 OnCollision(info, entity);
             }
@@ -66,7 +65,7 @@ namespace Asteroids
 
         public override void OnCollision(CollisionInfo info, Sprite sprite)
         {
-             if (info.IsColliding && info.Type == EntityType.Shot)
+            if (info.IsColliding && info.Type == EntityType.Shot)
             {
                 this.IsExploding = true;
             }

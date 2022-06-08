@@ -12,7 +12,8 @@ namespace Asteroids
     {
         //public float AccelerationX { get; set; }
         //public float AccelerationY { get; set; }
-
+        public bool IsHitting { get; set; } = false;
+        public DateTime creation { get; set; }
         public Shots(float posX, float posY, float velX, float velY, int sizeX, int sizeY)
         {
             this.PosX = posX;
@@ -28,24 +29,41 @@ namespace Asteroids
         {
             g.FillEllipse(Brushes.White, this.PosX, this.PosY,10,10);
         }
-
+        public override void HitTheWall(int Height, int Width)
+        {
+            if (this.PosY + this.SizeX <= 0)
+            {
+                this.PosY = Height;
+            }
+            if (this.PosY > Height)
+            {
+                this.PosY = -60;
+            }
+            if (this.PosX + this.SizeX <= 0)
+            {
+                this.PosX = Width;
+            }
+            if (this.PosX > Width)
+            {
+                this.PosX = -60;
+            }
+        }
         public override void CheckCollision(Sprite entity)
         {
             float dx = entity.PosX - this.PosX;
             float dy = entity.PosY - this.PosY;
             if (dx * dx + dy * dy > 100 * 100)
                 return;
-            var info = HitBox.IsColliding(entity.HitBox);
+            var info = entity.HitBox.IsColliding(HitBox);
             if (info.IsColliding)
             {
                 if (entity is Spaceship)
                 {
                     info.Type = EntityType.Spaceship;
                 }
-                else if (entity is Shots)
+                else if (entity is AsteroidSP)
                 {
-                    info.Type = EntityType.Shot;
-
+                    info.Type = EntityType.Asteroid;
                 }
                 OnCollision(info, entity);
             }
@@ -55,7 +73,7 @@ namespace Asteroids
         {
             if (info.IsColliding && info.Type == EntityType.Asteroid)
             {
-               
+                IsHitting = true;
             }
         }
     }
