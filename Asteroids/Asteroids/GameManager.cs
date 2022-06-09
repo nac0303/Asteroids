@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Media;
 namespace Asteroids
 {
     public class GameManager
     {
         private static GameManager crr = new GameManager();
         public static GameManager Current => crr;
-
+        SoundPlayer tiro = new SoundPlayer(Properties.Resources.TiroCerto);
+        
+        int qtde_asteroids = 0;
         private GameManager()
         {
 
@@ -44,6 +43,7 @@ namespace Asteroids
             {
                 sprite.Draw(Jogo, g);
             }
+
             DrawLives(g,spaceship.Lifes,(int)(Height*0.03),(int)(Width*0.02));
 
             for (int i = 0; i < Sprites.Count; i++)
@@ -81,6 +81,14 @@ namespace Asteroids
                 }
                     
             }
+            if (spaceship.GotHit)
+            {
+                spaceship.PosX = Width / 2;
+                spaceship.PosY = Height / 2;
+                spaceship.VelX = 0;
+                spaceship.VelY = 0;
+                spaceship.GotHit = false;
+            }
 
             spaceship.HitTheWall(Height, Width);
 
@@ -89,6 +97,20 @@ namespace Asteroids
                 sprite.HitTheWall(Height, Width);
             }
 
+            foreach(Sprite sprite in Sprites)
+            {
+                if(sprite is AsteroidSP)
+                {
+                    qtde_asteroids++;
+                }
+            }
+
+            if(qtde_asteroids == 0)
+            {
+                Application.Exit();
+            }
+
+            qtde_asteroids = 0;
             Jogo.Refresh();
         }
 
@@ -114,6 +136,7 @@ namespace Asteroids
             float VelY = (float)(-2f * Math.Cos(Math.PI * spaceship.RotationAngle / 180));
             Shots shot = new Shots(spaceship.PosX + spaceship.SizeX / 2, spaceship.PosY + spaceship.SizeY / 2, VelX * 15, VelY * 15, 7, 7);
             shot.creation = DateTime.Now;
+            tiro.Play();
             Sprites.Add(shot);
         }
 

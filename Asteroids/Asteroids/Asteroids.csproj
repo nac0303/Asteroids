@@ -117,5 +117,11 @@
   <ItemGroup>
     <None Include="Resources\Astro1_2.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tirinho.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TiroCerto.wav" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

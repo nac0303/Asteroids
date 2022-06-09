@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Asteroids
@@ -17,7 +10,7 @@ namespace Asteroids
 
         Timer tm = new Timer();
         Graphics g = null;
-
+        
         public AsteroidsMain()
         {
             InitializeComponent();
@@ -79,6 +72,7 @@ namespace Asteroids
             if(e.KeyCode == Keys.Space)
             {
                 GameManager.Current.Shooting(spaceship);
+                
             }
         }
 

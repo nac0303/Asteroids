@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Drawing;
 using System.Windows.Forms;
 
+
 namespace Asteroids
 {
     public class Spaceship : Sprite
@@ -15,7 +16,9 @@ namespace Asteroids
         public float AngularAcceleration { get; set; }
         public float AccelerationX { get; set; }
         public float AccelerationY { get; set; }
-
+        public bool GotHit { get; set; } = false;
+        
+        
         public Spaceship(float posX, float posY,int velX, int velY, int sizeX,int sizeY)
         {
             this.Images = new Image[] {Properties.Resources.Arrow};
@@ -175,12 +178,15 @@ namespace Asteroids
         {
             if (info.Type == EntityType.Asteroid)
             {
-                if (Lifes > 0)
+                if (Lifes > 0 )
                 {
-                    Down();
+                    GotHit = true;
                     Lifes--;
                 }
-                
+                if(Lifes <= 0)
+                {
+                    Application.Exit();
+                }
                     
             }
         }

@@ -139,5 +139,24 @@ namespace Asteroids.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Byte[].
+        /// </summary>
+        internal static byte[] tirinho {
+            get {
+                object obj = ResourceManager.GetObject("tirinho", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.IO.UnmanagedMemoryStream semelhante a System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream TiroCerto {
+            get {
+                return ResourceManager.GetStream("TiroCerto", resourceCulture);
+            }
+        }
     }
 }
